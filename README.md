@@ -99,10 +99,13 @@ list images
 > docker images
 
 List all the containers
-> docker container ls
+> docker container ls -a
 
 check for runnng container
 > docker ps 
+
+restart an exited container
+> docker restart <container name>
 
 Stop a docker container process 
 > docker stop <container name>
@@ -110,23 +113,27 @@ Stop a docker container process
 Remove a docker container by name
 > docker stop <container name>
 
+Delete a docker contain by name
+> docker rm <container name>
+
 build image according to a Dockerfile (at the path where Dockerfile is located)
 > docker build -t project-image .
 
 Run an image with a designated name 
 > docker run -d -p 3080:3080 --name <process name> <image name>
-    eg. docker run -d -p 3080:3080 --name project-run project-image 
+    eg. docker run -d -p 3080:3080 --name project-run-v3 project-image 
 
 ##################################
 
 deploy to docker image to azure 
-az acr build --image project/web-app:v2 --registry lianbfusi .
+<!-- az acr build --image project/web-app:v2 --registry liangfuski . -->
+az acr build --image project-image --registry liangfuski .
 
 login azure acr 
-sudo az acr login -n lianbfusi
+sudo az acr login -n liangfusi
 
 pull the image from repository
-docker pull lianbfusi.azurecr.io/project/web-app:v2
+docker pull liangfuski.azurecr.io/project/web-app:v2
 
 enable admin 
 az acr update -n lianbfusi --admin-enabled true
